@@ -1,0 +1,48 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\begin{document}
+	\newtheorem{thm}{Theorem}
+	\begin{thm}
+		$\displaystyle\sum_{i=1}^{n} = \frac{n(n+1)}{2}$, $\forall n \in \mathbf{Z}^+$.
+	\end{thm}
+
+	\begin{proof}
+	\ \\
+	\begin{enumerate}
+		\item{for n = 1,}
+		\begin{align*}
+			& \displaystyle\sum_{i=1}^{1} = 1 \qquad \cdots \cdots \cdots \qquad (1)\\[12pt]
+			& \frac{n(n+1)}{2} = \frac{1 \times (1+1)}{2}=1 \qquad \cdots \cdots \cdots \qquad (2)\\[12pt]
+			& \because \text{(1) is equal to (2)}\\[12pt]
+			& \therefore for\ n = 1,\ the\ equation\ holds.\\[12pt]
+		\end{align*}
+		
+		\item{for n = 2,}
+		\begin{align*}
+			& \displaystyle\sum_{i=1}^{2} = 1 + 2 = 3 \qquad \cdots \cdots \cdots \qquad (1)\\[12pt]
+			& \frac{n(n+1)}{2} = \frac{2 \times (1+2)}{2}=3 \qquad \cdots \cdots \cdots \qquad (2)\\[12pt]
+			& \because \text{(1) is equal to (2)}\\[12pt]
+			& \therefore for\ n = 2,\ the\ equation\ also\ holds.\\[12pt]
+		\end{align*}
+		
+		\item{Assume for n = k, the equation holds}
+		\begin{align*}
+			& \displaystyle\sum_{i=1}^{k} = 1 + 2 + 3 + \cdots + k = \frac{k \times (k+1)}{2}\\[12pt]
+		\end{align*}
+        
+        \item{let n = k + 1, such that:}
+        \begin{align*}
+            target: \displaystyle\sum_{i=1}^{k+1} & = \frac{(k+1)(k+2)}{2} \qquad \cdots \cdots \qquad L.H.S.\\[12pt]
+            \displaystyle\sum_{i=1}^{k+1} & = \displaystyle\sum_{i=1}^{k} + (k+1)\\[12pt] 
+            & = \frac{k \times (k+1)}{2} + (k+1)\\[12pt] 
+            & = \frac{k \times (k+1) + 2(k+1)}{2}\\[12pt]
+            & = \frac{(k+2) \times (k+1)}{2} \qquad \cdots \cdots \qquad R.H.S\\[12pt]
+        \end{align*}
+        \begin{align*}
+           & \because\ L.H.S.\ is\ equal\ to\ R.H.S. \\[12pt]
+           &  Therefore,\ when\ n = k + 1,\ the\ equation\ holds.\\[12pt] 
+        \end{align*}
+    \item{According to definitions of Mathematical Induction, the equation holds.}
+	\end{enumerate}
+	\end{proof}
+\end{document} 
