@@ -1,0 +1,42 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{algpseudocode}
+\begin{document}
+  \begin{description}
+    \large
+    \item[INPUT]~\\
+    Input an integer \emph{n}, and then input \emph{n} numbers.\\
+    Input an integer \emph{m}, which means there are m querys.\\ 
+    \item[OUTPUT]~\\
+    For each query, output the rank of number.\\
+    
+    \item[Binary Search Pseudo code]~\\
+    \begin{algorithmic}[1]
+      \State$n \gets INPUT$\Comment{Input n}
+      \For{$i \gets 0\ to\ n-1$}\Comment{Input n sorted numbers}
+        \State$A[i] \gets INPUT$
+      \EndFor
+      \\
+      \State$m \gets INPUT$\Comment{Input m, means m querys}
+      \For{$i\ in\ 1\ to\ m$}\Comment{Input m numbers}
+        \State$x \gets INPUT$ 
+        \State$i \gets 0$ \Comment{Initialize i and j}
+        \State$j \gets n$
+        \State$mid \gets (i+j)/2$ \Comment{Find middle position}
+        \While{$i<j$}
+          \State$mid \gets (i+j)/2$
+          \If{$x<A[mid]$} \Comment{x is smaller than middle number}
+            \State$j \gets mid$ \Comment{update j}
+          \Else
+            \If{$x>A[mid]$} \Comment{x is bigger than middle number}
+              \State$i \gets mid$ \Comment{update i}
+            \Else
+              \State$break$
+            \EndIf
+          \EndIf
+        \EndWhile
+      \EndFor
+      \State{$OUTPUT \gets mid$} \Comment{Output mid}
+    \end{algorithmic}
+  \end{description}
+\end{document}
