@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+  \title{First Create \LaTeX}
+  \author{gg\\haha haha}
+  \date{\today}
+  \maketitle
+  \begin{abstract}
+    This is first abstract.
+  \end{abstract}
+  \newtheorem{thm}{Theorm}
+  \begin{thm}
+    Here is theorm.
+  \end{thm}
+  
+  \section{First section}
+  Hello This is first section
+    \subsection{first subsection}
+    this is subsection
+  
+  \section{Second section}
+\label{sec:algorithm}
+  this is big second section
+    \subsection{my second subsection}
+    subsection test
+  
+  \section*{section name}
+  section has no number list
+  
+  \section{test section 3}
+  section has number again
+
+  \section{Section four}
+  (see my Section~\ref{sec:algorithm})
+
+  \input{./1.txt}
+  \begin{thebibliography}{9}
+  \bibitem{BBEG+12}
+  F.~Bari, R.~Boutaba, R.~Esteves, M.~Podlesny, G.~Rabbani, Q.~Zhang, F.~Zhani,
+  and L.~Granville.
+  \newblock Data center network virtualiza5on: A survey.
+  
+  \bibitem{BBEG+12}
+  F.~Bari, R.~Boutaba, R.~Esteves, M.~Podlesny, G.~Rabbani, Q.~Zhang, F.~Zhani,
+  and L.~Granville.
+  Data center network virtualiza5on: A survey.
+  \end{thebibliography}
+\end{document}

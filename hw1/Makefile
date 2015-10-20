@@ -1,3 +1,3 @@
 all: *.tex
-	rubber -f --pdf hw1.tex
-	open hw1.pdf
+	rubber -f --pdf 102062111_hw1.tex
+	open 102062111_hw1.pdf

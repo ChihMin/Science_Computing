@@ -1,0 +1,113 @@
+\documentclass[11pt, draftclsnofoot, onecolumn]{IEEEtran} 
+
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{cite}
+\usepackage{psfrag}
+%\usepackage{stfloats}
+\usepackage{array}
+\usepackage{mdwmath} % part of Mark Wooding's powerful
+\usepackage{mdwtab}  % tools for math, tables, ...
+\usepackage{multirow}
+\usepackage{verbatim}
+%\usepackage{booktabs}
+%\usepackage{rotating}
+\usepackage{color}
+%\usepackage{upgreek}
+%\usepackage{setspace}
+%\usepackage{afterpage}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{dfn}{Definition}
+\newtheorem{pbm}{Problem}
+\newtheorem{claim}{Claim}
+
+\input{./macros}   % some pre-defined macros
+
+
+\begin{document}
+
+\title{Your Project Title}
+
+\author{Student Name\\
+        Department of Computer Science\\
+        National Tsing Hua University\\
+        Hsinchu, Taiwan\\
+        account@cs.nthu.edu.tw \\ 
+    % {\vspace{0.2cm} \large \bf Technical Report, September 2011} 
+}
+
+
+\date{}
+\maketitle
+
+\begin{abstract}
+
+The abstract of your work should state the problem, why it is important, your
+proposed solution, and the evaluation results. It should be concise, say
+200-250 words.
+
+\end{abstract}
+
+% The body of the document: divided into multiple sections When the file grows,
+% you may want to break sections into separate files. Check \input{...} command
+% in Latex.
+
+\section{Introduction} \label{sec:introduction}
+
+Motivate your problem. Why we need a better solution. Then, clearly state what
+problem we address in this paper. How we validate that our solution is much
+better than state-of-the-art solutions in the literature. 
+
+\section{Related Work} \label{sec:related}
+
+This is just a sample on how to cite different publications, e.g., 
+journal papers \cite{MEVS03}, conference papers \cite{SGD+02}, 
+technical reports \cite{MKL+02}, books \cite{comerV1}, papers 
+in edited books \cite{CP02}, and miscellaneous \cite{freePastry, nntp}. 
+
+You will see in the refs.bib file the completed entries for the above 
+citations. Please use the same format for similar publications  
+(copy and paste entries, then change data). 
+
+When you read a paper, you should summarize the most important issues/ideas
+presented in the paper in your related work section.  You should also try to
+criticize the work and find shortcomings, unrealistic assumptions, etc, and how
+this work could potentially be extended (why your solution is better). 
+
+\section{Problem Statement} \label{sec:problem}
+
+Formally state the problem clearly. You probably need to develop some notations
+and introduce system models in this section. 
+
+\section{Proposed Solution} \label{sec:solution}
+
+Here is the brilliant solutions that you came up with for the problem. 
+
+\section{Evaluation} \label{sec:evaluation}
+
+In this section, you demonstrate that your solution is cool and it outperforms
+previous works. This is usually done through simulations, but real experimental
+results are much more convincing. Having a small prototype often significantly
+increase your chance to get into top conferences. 
+
+\section{Conclusions and Future Work} \label{sec:conclusion}
+
+What are the lessons that we should learn from this paper? 
+What are the possible extensions of this work?
+
+%%% The References (are kept in a separate file "refs.bib" in this example. 
+\bibliographystyle{IEEEtran}   
+\bibliography{./refs}    % refs.bib --> should contain all references
+
+\end{document}
+
+

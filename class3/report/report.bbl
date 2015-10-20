@@ -1,0 +1,56 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{#1}
+\csname url@rmstyle\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand\BIBentrySTDinterwordspacing{\spaceskip=0pt\relax}
+\providecommand\BIBentryALTinterwordstretchfactor{4}
+\providecommand\BIBentryALTinterwordspacing{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
+\providecommand\BIBforeignlanguage[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+
+\bibitem{MEVS03}
+A.~Mahanti, D.~Eager, M.~Vernon, and D.~Sundaram-Stukel, ``Scalable on-demand
+  media streaming with packet loss recovery,'' \emph{IEEE/ACM Transactions on
+  Networking}, vol.~11, no.~2, pp. 195--209, April 2003.
+
+\bibitem{SGD+02}
+S.~Saroiu, K.~Gummadi, R.~Dunn, S.~Gribble, and H.~Levy, ``An analysis of
+  {Internet} content delivery systems,'' in \emph{Proc. of 5th Symposium on
+  Operating Systems Design and Implementation (OSDI'02)}, Boston, MA, USA,
+  December 2002.
+
+\bibitem{MKL+02}
+D.~Milojicic, V.~Kalogeraki, R.~Lukose, K.~Nagaraja, J.~Pruyne, and B.~Richard,
+  ``Peer-to-peer computing,'' HP Laboratories, Tech. Rep. HPL-2002-57, March
+  2002.
+
+\bibitem{comerV1}
+D.~E. Comer, \emph{Internetworking with {TCP/IP}: {Principles}, protocols, and
+  architectures}, 4th~ed.\hskip 1em plus 0.5em minus 0.4em\relax Prentice Hall,
+  2000.
+
+\bibitem{CP02}
+J.~Crowcroft and I.~Pratt, ``Peer to peer: {Peering} into the future,'' in
+  \emph{Advanced Lectures on Networking, NETWORKING 2002 Tutorials}, ser.
+  Lecture Notes in Computer Science, E.~Gregori, G.~Anastasi, and S.~Basagni,
+  Eds.\hskip 1em plus 0.5em minus 0.4em\relax Springer-Verlag, May 2002, vol.
+  2497.
+
+\bibitem{freePastry}
+``Free pastry home page,'' \url{http://www.cs.rice.edu/CS/Systems/Pastry}.
+
+\bibitem{nntp}
+B.~Kantor and P.~Lapsley, ``Network news transfer protocol,'' RFC 977, February
+  1986.
+
+\end{thebibliography}
