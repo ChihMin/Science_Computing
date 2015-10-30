@@ -1,3 +1,3 @@
 all: *.tex
-	rubber -f --pdf Q3.tex
-	open Q3.pdf
+	rubber -f --pdf Q4.tex
+	open Q4.pdf
