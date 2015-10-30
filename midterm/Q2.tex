@@ -1,0 +1,31 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{algpseudocode}
+\usepackage[left=1cm, right=2cm, top=1.5cm, bottom=1.2cm]{geometry}
+\begin{document}
+  \begin{description}
+    \large
+    \item[INPUT]~\\
+    Input an integer \emph{N}, and then input \emph{N} numbers.\\
+    \item[OUTPUT]~\\
+    Output the N sorted elements\\
+ 
+    \item[Insertion sort Pseudo code]~\\
+    \begin{algorithmic}[1]
+      \State$n \gets INPUT$\Comment{Input n}
+      \For{$i \gets 0\ to\ n-1$}\Comment{Input n numbers}
+        \State$A[i] \gets INPUT$
+      \EndFor
+      \\
+      \For{$i\ \gets 0\ to\ N-1$}\Comment{Do N rounds to make sure all elements sorted}
+        \For{$j\ \gets i\ to\ 1$} \Comment{Find correct position for A[i], make sure current i elements are sorted}
+          \If{$A[j] <  A[j-1]$} \Comment{If j'th is smaller than (j-1)'th}
+            \State$SWAP(A[j], A[j-1])$ \Comment{swap smaller one to left hand side}
+          \EndIf
+        \EndFor
+      \EndFor\\
+      \State$Array\ A\ is\ sorted,$
+      \State$OUTPUT \gets A[0...N-1]$
+    \end{algorithmic}
+  \end{description}
+\end{document}
