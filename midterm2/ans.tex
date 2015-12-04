@@ -24,7 +24,7 @@
     \item [2.]
     \begin{enumerate*}
       \item [(a)]
-      $\because$ p is prime, and p is coprime between all integers from 1 to p except number 1 \\
+      $\because$ p is prime, and p is coprime between all integers from 1 to p except number p \\
       $\therefore \ phi(p)\ is\ p-1$ 
       
       \item [(b)]
@@ -37,14 +37,37 @@
         \begin{enumerate*}
           \item [(i)]
           Suppose we have distinct prime number p and q.
-          
+          \\
+
           \item [(ii)]
           $\because$ p is prime number, and q is also prime number \\
           $\therefore\ \phi(p) = p-1,\ \phi(q) = q-1,\ \phi(p)\phi(q)=(p-1)(q-1)$
+          \\
 
-            
+          \item [(iii)]
+          $\because$ \\
+          We observe "number set" coprime between $p \times q$ in range $[1,\ p\times q]$ : \\
+          $\left\{ 1,\ 2,\ 3,\ ,\cdots\cdots,\ p \times q \right\}\ -$
+          $\{p \times 1,\ p \times 2,\ \cdots\cdots p\times q \}\ -$
+          $\{q \times 1,\ q \times 2,\ \cdots\cdots q\times p \}\ +$
+          $\{p \times q\}$ \\
+          $\therefore$ \\ 
+          The number of $PRIME\ SET\ =$ 
+          $\phi(p \times q)=p \times q - p - q + 1$ 
+          \\
+
+          \item [(iv)]
+          $\because(ii)\ is\ equal\ to\ (iii)$ \\
+          $\therefore\ the\ equation\ is\ hold.$
            
         \end{enumerate*}
+      \item [3.]
+      \begin{enumerate*}
+        \item [(a)]
+        Use is\_prime() function to check whether a number is prime or not.\\
+        Sample code : is\_prime(2**1279-1)
+      \end{enumerate*}
+
     \end{enumerate*}
   \end{enumerate*}
 \end{document}
