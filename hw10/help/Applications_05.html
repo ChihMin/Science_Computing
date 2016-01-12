@@ -1,0 +1,266 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Music Genre Classification via Acoustic Features</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-08-29"><meta name="DC.source" content="Applications_05.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Music Genre Classification via Acoustic Features</h1><!--introduction--><p>In this application example, we shall explore the use of several classification schemes for genre classification of audio music. Here we should only use the basic acoustic feature called MFCC (mel-scale frequency cepstral coefficient), which is the most commonly used feature for speech and speaker recognition.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Download the dataset</a></li><li><a href="#2">Feature Extraction</a></li><li><a href="#6">Classification by QC</a></li><li><a href="#8">Classification by SVM</a></li></ul></div><h2>Download the dataset<a name="1"></a></h2><p>The audio music dataset used here is "GTZAN Genre Collection", which is prepared by Prof. George Tzanetakis at the University of Victoria. This dataset was used for the well known paper in genre classification "Musical genre classification of audio signals" by G. Tzanetakis and P. Cook in IEEE Transactions on Audio and Speech Processing, 2002. The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. These genres are:</p><div><ul><li>Blue</li><li>Classic</li><li>Country</li><li>Disco</li><li>Hiphop</li><li>Jazz</li><li>Metal</li><li>Pop</li><li>Raegae</li><li>Rock</li></ul></div><p>You can download the dataset at <a href="http://marsyas.info/download/data_sets">Marsyas' home</a>.</p><h2>Feature Extraction<a name="2"></a></h2><p>After downloading the dataset, you can read all files and compute MFCC as follows:</p><pre class="codeinput">musicCorpusDir=<span class="string">'e:/dataSet/musicGenreClassification/GTZAN'</span>;		<span class="comment">% Replace this one with the path of the dataset</span>
+opt=fileList(<span class="string">'defaultOpt'</span>); opt.extName=<span class="string">'au'</span>; opt.mode=<span class="string">'recursive'</span>;
+auSet=fileList(musicCorpusDir, opt);
+fileNum=length(auSet);
+<span class="keyword">if</span> fileNum==0, error(<span class="string">'Cannot find any audio files in %s!'</span>, musicCorpusDir); <span class="keyword">end</span>
+outputName=unique({auSet.parentDir});
+tic
+<span class="keyword">for</span> i=1:fileNum
+	auFile=auSet(i).path;
+	[y, fs]=audioread(auFile);
+	mfccOpt=mfccOptSet(fs);
+	mfccOpt.frameSize=1024;
+	mfccOpt.overlap=512;
+	auSet(i).mfcc=wave2mfcc(y, fs, mfccOpt);
+	auSet(i).output=find(strcmp(outputName, auSet(i).parentDir));
+<span class="keyword">end</span>
+toc
+</pre><pre class="codeoutput">Elapsed time is 1096.893713 seconds.
+</pre><p>It will take a while to read all 1000 music files and convert them to MFCC. Note that each frame is converted into an MFCC vector of 13 elements. Thus each song is represented by an MFCC matrix of 13 by n, where n is the number of frames. For simplicity, we shall use a fixed-length feature vector to represent a song. This is achieved by taking the mean, standard deviation, min., and max. of each dimenrion of the MFCC matrix of a song, as shown next:</p><pre class="codeinput"><span class="keyword">for</span> i=1:fileNum
+	fea=[];
+	fea(end+1,:)=mean(auSet(i).mfcc, 2);		<span class="comment">% Mean</span>
+	fea(end+1,:)=var(auSet(i).mfcc, 1, 2);		<span class="comment">% Standard deviation</span>
+	fea(end+1,:)=min(auSet(i).mfcc, [], 2);		<span class="comment">% Min</span>
+	fea(end+1,:)=max(auSet(i).mfcc, [], 2);		<span class="comment">% Max</span>
+	auSet(i).fea=fea(:);
+<span class="keyword">end</span>
+</pre><p>We then create the standard dataset structure for use with the Machine Learning Toolbox:</p><pre class="codeinput">DS.input=[auSet.fea];
+DS.output=[auSet.output];
+DS.outputName=outputName;
+save <span class="string">gtzanDataset</span> <span class="string">DS</span>				<span class="comment">% Save the data for future use</span>
+DS.input=inputNormalize(DS.input);	<span class="comment">% Input normalization</span>
+</pre><p>As a result, each song is now represented by a feature vector of 13*4 = 52 elements. We shall use these 52-element feature vector for genre classification.</p><h2>Classification by QC<a name="6"></a></h2><p>We shall try several classifiers on GTZAN dataset to see the performance based on the leave-one-out test. The first classifier is QC (quadratic classifier) which is well known for its simplicity:</p><pre class="codeinput">tic
+cvPrm.nFolds=inf;		<span class="comment">% "inf" for leave-one-out test</span>
+cvPrm.classifier=<span class="string">'qc'</span>;
+[tRrMean, vRrMean, tRr, vRr, computedClass]=crossValidate(DS, cvPrm, 1);
+toc
+</pre><pre class="codeoutput">Fold = 100/1000
+Fold = 200/1000
+Fold = 300/1000
+Fold = 400/1000
+Fold = 500/1000
+Fold = 600/1000
+Fold = 700/1000
+Fold = 800/1000
+Fold = 900/1000
+Fold = 1000/1000
+Training RR=99.51%, Validating RR=55.40%, classifier=qc, no. of folds=1000
+Elapsed time is 7.677298 seconds.
+</pre><img vspace="5" hspace="5" src="Applications_05_01.png" alt=""> <p>As indicated in the plot, the training RR (recognition rate) is very high while the validating RR is around 55%. This implies we have overfitted the training data since QC indeed contains many fitting parameters for a feature vector with 52 elements.</p><h2>Classification by SVM<a name="8"></a></h2><p>To avoid overfitting, we employ the SVM classifier which is known to have better generalization capability.</p><pre class="codeinput">tic
+cvPrm.nFolds=inf;		<span class="comment">% "inf" for leave-one-out test</span>
+cvPrm.classifier=<span class="string">'svmc'</span>;
+[tRrMean, vRrMean, tRr, vRr, computedClass]=crossValidate(DS, cvPrm, 1);
+toc
+</pre><pre class="codeoutput">Fold = 100/1000
+Fold = 200/1000
+Fold = 300/1000
+Fold = 400/1000
+Fold = 500/1000
+Fold = 600/1000
+Fold = 700/1000
+Fold = 800/1000
+Fold = 900/1000
+Fold = 1000/1000
+Training RR=95.29%, Validating RR=76.90%, classifier=svmc, no. of folds=1000
+Elapsed time is 312.012851 seconds.
+</pre><img vspace="5" hspace="5" src="Applications_05_02.png" alt=""> <p>The validating RR is now 76.90%, which is much better than QC. We can then plot the confusion matrix of the classifier:</p><pre class="codeinput"><span class="keyword">for</span> i=1:length(computedClass)
+	computed(i)=computedClass{i};
+<span class="keyword">end</span>
+desired=DS.output;
+confMat = confMatGet(desired, computed);
+opt=confMatPlot(<span class="string">'defaultOpt'</span>);
+opt.className=DS.outputName;
+opt.mode=<span class="string">'dataCount'</span>;  subplot(1,2,1); confMatPlot(confMat, opt);	<span class="comment">% Confusion matrix based on data count</span>
+opt.mode=<span class="string">'percentage'</span>; subplot(1,2,2); confMatPlot(confMat, opt);	<span class="comment">% Confusion matrix based on percentage</span>
+</pre><img vspace="5" hspace="5" src="Applications_05_03.png" alt=""> <p>From the above confusion matrix in percentage, we can observe that</p><div><ul><li>"Classical" has the highest RR of 93%</li><li>"Rock" has the lowest RR of 60%</li><li>"Hiphop" is likely to be misclassified as "Raggae" and vice versa.</li><li>"Rock" is likely to be misclassified as "Disco".</li></ul></div><p>To our intuition, these observations (and insight thus obtained) are quite reasonable considering the characteristics of each genre. Better performance can be obtained via the use of other feature vectors, such as visual features extracted from the spectrogram of the audio signals.</p><p>Copyright 2011-2015 <a href="http://mirlab.org/jang">Jyh-Shing Roger Jang</a>.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Music Genre Classification via Acoustic Features
+% In this application example, we shall explore the use of several
+% classification schemes for genre classification of audio music. Here we
+% should only use the basic acoustic feature called MFCC (mel-scale
+% frequency cepstral coefficient), which is the most commonly used feature for
+% speech and speaker recognition.
+%% Download the dataset
+% The audio music dataset used here is "GTZAN Genre Collection",
+% which is prepared by Prof. George Tzanetakis at the University of
+% Victoria.
+% This dataset was used for the well known paper in genre classification
+% "Musical genre classification of audio signals" by G. Tzanetakis and P.
+% Cook in IEEE Transactions on Audio and Speech Processing, 2002.
+% The dataset consists of 1000 audio tracks each 30 seconds long. It
+% contains 10 genres, each represented by 100 tracks. These genres are:
+%
+% * Blue 
+% * Classic
+% * Country
+% * Disco
+% * Hiphop
+% * Jazz
+% * Metal
+% * Pop
+% * Raegae
+% * Rock
+%
+% You can download the dataset at <http://marsyas.info/download/data_sets Marsyas' home>.
+%% Feature Extraction
+% After downloading the dataset, you can read all files and compute MFCC as follows:
+musicCorpusDir='e:/dataSet/musicGenreClassification/GTZAN';		% Replace this one with the path of the dataset
+opt=fileList('defaultOpt'); opt.extName='au'; opt.mode='recursive';
+auSet=fileList(musicCorpusDir, opt);
+fileNum=length(auSet);
+if fileNum==0, error('Cannot find any audio files in %s!', musicCorpusDir); end
+outputName=unique({auSet.parentDir});
+tic
+for i=1:fileNum
+	auFile=auSet(i).path;
+	[y, fs]=audioread(auFile);
+	mfccOpt=mfccOptSet(fs);
+	mfccOpt.frameSize=1024;
+	mfccOpt.overlap=512;
+	auSet(i).mfcc=wave2mfcc(y, fs, mfccOpt);
+	auSet(i).output=find(strcmp(outputName, auSet(i).parentDir));
+end
+toc
+%%
+% It will take a while to read all 1000 music files and convert them to MFCC.
+% Note that each frame is converted into an MFCC vector of 13 elements.
+% Thus each song is 
+% represented by an MFCC matrix of 13 by n, where n is the number of
+% frames. For simplicity, we shall use a fixed-length feature vector to
+% represent a song. This is achieved by taking the mean, standard deviation,
+% min., and max. of each dimenrion of the MFCC matrix of a song, as shown next:
+for i=1:fileNum
+	fea=[];
+	fea(end+1,:)=mean(auSet(i).mfcc, 2);		% Mean
+	fea(end+1,:)=var(auSet(i).mfcc, 1, 2);		% Standard deviation
+	fea(end+1,:)=min(auSet(i).mfcc, [], 2);		% Min
+	fea(end+1,:)=max(auSet(i).mfcc, [], 2);		% Max
+	auSet(i).fea=fea(:);
+end
+%%
+% We then create the standard dataset structure for use with the Machine Learning Toolbox:
+DS.input=[auSet.fea];
+DS.output=[auSet.output];
+DS.outputName=outputName;
+save gtzanDataset DS				% Save the data for future use
+DS.input=inputNormalize(DS.input);	% Input normalization
+%%
+% As a result, each song is now represented by a feature vector of 13*4 = 52 elements.
+% We shall use these 52-element feature vector for genre classification.
+%% Classification by QC
+% We shall try several classifiers on GTZAN dataset to see the performance
+% based on the leave-one-out test. The first classifier is QC (quadratic
+% classifier) which is well known for its simplicity:
+tic
+cvPrm.nFolds=inf;		% "inf" for leave-one-out test
+cvPrm.classifier='qc';
+[tRrMean, vRrMean, tRr, vRr, computedClass]=crossValidate(DS, cvPrm, 1);
+toc
+%%
+% As indicated in the plot, the training RR (recognition rate) is very high
+% while the validating RR is around 55%. This implies we have overfitted the
+% training data since QC indeed contains many
+% fitting parameters for a feature vector with 52 elements.
+%% Classification by SVM
+% To avoid overfitting, we employ the SVM classifier
+% which is known to have better generalization capability.
+tic
+cvPrm.nFolds=inf;		% "inf" for leave-one-out test
+cvPrm.classifier='svmc';
+[tRrMean, vRrMean, tRr, vRr, computedClass]=crossValidate(DS, cvPrm, 1);
+toc
+%%
+% The validating RR is now 76.90%, which is much better than QC. We can then
+% plot the confusion matrix of the classifier:
+for i=1:length(computedClass)
+	computed(i)=computedClass{i};
+end
+desired=DS.output;
+confMat = confMatGet(desired, computed);
+opt=confMatPlot('defaultOpt');
+opt.className=DS.outputName;
+opt.mode='dataCount';  subplot(1,2,1); confMatPlot(confMat, opt);	% Confusion matrix based on data count
+opt.mode='percentage'; subplot(1,2,2); confMatPlot(confMat, opt);	% Confusion matrix based on percentage
+%%
+% From the above confusion matrix in percentage, we can observe that
+%
+% * "Classical" has the highest RR of 93%
+% * "Rock" has the lowest RR of 60%
+% * "Hiphop" is likely to be misclassified as "Raggae" and vice versa.
+% * "Rock" is likely to be misclassified as "Disco".
+%
+% To our intuition, these observations (and insight thus obtained) are quite reasonable considering the characteristics of each genre.
+% Better performance can be obtained via the use of other feature vectors, such as visual features extracted from the spectrogram of the audio signals.
+%%
+% Copyright 2011-2015 <http://mirlab.org/jang Jyh-Shing Roger Jang>.
+
+##### SOURCE END #####
+--></body></html>
