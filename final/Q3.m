@@ -47,3 +47,21 @@ for j = 1:w,
     end
 end
 imshow([Y, U, V]);
+
+%%
+Fs=16000;
+Ts=1/Fs;
+t=[0:Ts:4];
+[~, length] = size(t);
+
+music = t;
+step = length / 800; 
+for i = 1:length,
+    hz = i / step;
+    music(i) = sin(2 * pi * hz * t(i));
+end
+
+plot(t, music)
+
+plot(t(1:10000), music(1:10000));
+sound(mu

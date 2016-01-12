@@ -139,8 +139,66 @@
       Output picture : \ \\ \ \\
       \includegraphics[width=0.7\textwidth]{/Users/chihmin/Desktop/science_computing/final/Q4_b.png}
 	
-    \end{enumerate}  
-    \item [6.] \\   
+    \end{enumerate} \ \\ \ \\  
+    
+    \item [6.] 
+     \begin{enumerate}
+       \item [(a)] \text{}
+          \begin{align*}
+            \text{we knows that :} & \frac{x^2}{a^2} + \frac{y^2}{b^2}  = 1  \\
+            Y & = y^2 = \alpha X + \beta = - \frac{b^2}{a^2} x^2 + b^2 \\
+            a^2 & = -\frac{\beta}{\alpha},\ b^2 = \beta \\
+            Original\ equation\ is & \ (x-a)^2+(y-b)^2=c^2\ is\ also\ equal\ to\  \frac{(x-a)^2}{c^2} + \frac{(y-b)^2}{c^2}=1 \\ 
+            \because &\text{We don't care about the offset of x and y corrdinate}\\
+            \therefore& \ The\ linear\ equation\ is\ y^2=-\frac{c^2}{c^2}x^2+c^2,\ Y=-X+c^2
+          \end{align*}
+        
+        \item [(b)] \text{}
+          \begin{align*}
+            \text{We know the linear equation of } & y=\frac{ax}{x^2+b^2}\ is \\
+            & \frac{1}{y} = \frac{1}{a}x+\frac{b^2}{a}\frac{1}{x} \\
+            & Let\  Y=\frac{1}{y},\ \alpha=\frac{1}{a},\ \beta=\frac{b^2}{a} \\
+            & \therefore Y = \alpha x+\beta\frac{1}{x}
+          \end{align*}
+
+        \item [(c)] \text{}
+          \begin{align*}
+            \text{We know the linear equation of } & \frac{x^2}{a^2}+\frac{y^2}{b^2}=1\ is \\
+            & y^2 = -\frac{b^2}{a^2}x^2+b^2\\
+            & Let\  Y=y^2,\ \alpha=-\frac{b^2}{a^2},\ \beta=b^2 \\
+            & \therefore Y = \alpha x^2+\beta
+          \end{align*}
+     \end{enumerate}
+     \item [7.]
+      \begin{enumerate}
+        \item [(a)] \text{} \\
+        \begin{lstlisting}
+        Fs=16000;
+        Ts=1/Fs;
+        t=[0:Ts:4];
+        [~, length] = size(t);
+
+        music = t;
+        step = length / 800; 
+        for i = 1:length,
+            hz = i / step;
+          music(i) = sin(2 * pi * hz * t(i));
+        end
+
+        plot(t, music)
+        \end{lstlisting} \ \\
+        \includegraphics[width=0.9\textwidth]{/Users/chihmin/Desktop/science_computing/final/sound.png}
+
+        \item [(b)] \text{} \\
+        \begin{lstlisting}
+          plot(t(1:10000), music(1:10000)); 
+        \end{lstlisting} 
+        \includegraphics[width=0.9\textwidth]{/Users/chihmin/Desktop/science_computing/final/sound2.png}
+        
+        \item [(c)] \text{} \\
+        I think this is the same because we just up-side-down the value of y, and y is a sin function.
+      \end{enumerate}
+        
   \end{enumerate*}
 \end{document}
 
